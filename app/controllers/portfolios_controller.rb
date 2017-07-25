@@ -59,9 +59,4 @@ class PortfoliosController < ApplicationController
     end
   end
 
-<<<<<<< HEAD
 end
-=======
-end
-  
->>>>>>> data-feature
