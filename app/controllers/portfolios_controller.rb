@@ -1,6 +1,7 @@
 class PortfoliosController < ApplicationController
   before_action :set_portfolio_item, only: [:edit, :show, :update, :destroy]
   layout 'portfolio'
+  access all: [:show, :index, :angular], user: {except: [:destroy, :new, :create, :update, :edit]}, site_admin: :all
  
   def index
     @portfolio_items = Portfolio.all
@@ -60,6 +61,7 @@ class PortfoliosController < ApplicationController
       format.html { redirect_to portfolios_url, notice: 'Record was removed.' }
     end
   end
+  
   private
   
   def portfolio_params 
@@ -68,5 +70,9 @@ class PortfoliosController < ApplicationController
                                       :body,
                                       technologies_attributes: [:name]
                                     )
+  end
+  
+  def set_portfolio_item
+    @portfolio_item = Portfolio.find(params[:id])
   end
 end
